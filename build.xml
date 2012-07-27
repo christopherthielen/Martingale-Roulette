@@ -59,51 +59,6 @@
     <include name="**/?*.ftl"/>
   </patternset>
   
-  <!-- JDK definitions -->
-  
-  <property name="jdk.bin.1.5" value="${jdk.home.1.5}/bin"/>
-  <path id="jdk.classpath.1.5">
-    <fileset dir="${jdk.home.1.5}">
-      <include name="../../../../../Frameworks/JavaVM.framework/Versions/1.5/Home/lib/deploy.jar"/>
-      <include name="../../../../../Frameworks/JavaVM.framework/Versions/1.5/Home/lib/dt.jar"/>
-      <include name="../../../../../Frameworks/JavaVM.framework/Versions/1.5/Home/lib/javaws.jar"/>
-      <include name="../../../../../Frameworks/JavaVM.framework/Versions/1.5/Home/lib/jce.jar"/>
-      <include name="../../../../../Frameworks/JavaVM.framework/Versions/1.5/Home/lib/jconsole.jar"/>
-      <include name="../../../../../Frameworks/JavaVM.framework/Versions/1.5/Home/lib/management-agent.jar"/>
-      <include name="../../../../../Frameworks/JavaVM.framework/Versions/1.5/Home/lib/plugin.jar"/>
-      <include name="../../../../../Frameworks/JavaVM.framework/Versions/1.5/Home/lib/sa-jdi.jar"/>
-      <include name="../../../../../Frameworks/JavaVM.framework/Versions/1.5/Home/../Classes/charsets.jar"/>
-      <include name="../../../../../Frameworks/JavaVM.framework/Versions/1.5/Home/../Classes/classes.jar"/>
-      <include name="../../../../../Frameworks/JavaVM.framework/Versions/1.5/Home/../Classes/jsse.jar"/>
-      <include name="../../../../../Frameworks/JavaVM.framework/Versions/1.5/Home/../Classes/ui.jar"/>
-      <include name="../../../../../Frameworks/JavaVM.framework/Versions/1.5/Home/lib/ext/apple_provider.jar"/>
-      <include name="../../../../../Frameworks/JavaVM.framework/Versions/1.5/Home/lib/ext/dnsns.jar"/>
-      <include name="../../../../../Frameworks/JavaVM.framework/Versions/1.5/Home/lib/ext/localedata.jar"/>
-      <include name="../../../../../Frameworks/JavaVM.framework/Versions/1.5/Home/lib/ext/sunjce_provider.jar"/>
-      <include name="../../../../../Frameworks/JavaVM.framework/Versions/1.5/Home/lib/ext/sunpkcs11.jar"/>
-      <include name="../../../../../Frameworks/JavaVM.framework/Versions/1.5/Home/../Classes/jconsole.jar"/>
-      <include name="../../../../../Frameworks/JavaVM.framework/Versions/1.5.0/Home/lib/deploy.jar"/>
-      <include name="../../../../../Frameworks/JavaVM.framework/Versions/1.5.0/Classes/dt.jar"/>
-      <include name="../../../../../Frameworks/JavaVM.framework/Versions/1.5.0/Classes/jce.jar"/>
-      <include name="../../../../../Frameworks/JavaVM.framework/Versions/1.5.0/Home/lib/plugin.jar"/>
-      <include name="../../../../../Frameworks/JavaVM.framework/Versions/1.5.0/Home/lib/sa-jdi.jar"/>
-      <include name="../../../../../Frameworks/JavaVM.framework/Versions/1.5.0/Classes/charsets.jar"/>
-      <include name="../../../../../Frameworks/JavaVM.framework/Versions/1.5.0/Classes/classes.jar"/>
-      <include name="../../../../../Frameworks/JavaVM.framework/Versions/1.5.0/Classes/jconsole.jar"/>
-      <include name="../../../../../Frameworks/JavaVM.framework/Versions/1.5.0/Classes/jsse.jar"/>
-      <include name="../../../../../Frameworks/JavaVM.framework/Versions/1.5.0/Classes/ui.jar"/>
-      <include name="../../../../../Frameworks/JavaVM.framework/Versions/1.5.0/Home/lib/ext/apple_provider.jar"/>
-      <include name="../../../../../Frameworks/JavaVM.framework/Versions/1.5.0/Home/lib/ext/dnsns.jar"/>
-      <include name="../../../../../Frameworks/JavaVM.framework/Versions/1.5.0/Home/lib/ext/localedata.jar"/>
-      <include name="../../../../../Frameworks/JavaVM.framework/Versions/1.5.0/Home/lib/ext/sunjce_provider.jar"/>
-      <include name="../../../../../Frameworks/JavaVM.framework/Versions/1.5.0/Home/lib/ext/sunpkcs11.jar"/>
-    </fileset>
-  </path>
-  
-  <property name="project.jdk.home" value="${jdk.home.1.5}"/>
-  <property name="project.jdk.bin" value="${jdk.bin.1.5}"/>
-  <property name="project.jdk.classpath" value="jdk.classpath.1.5"/>
-  
   
   <!-- Global Libraries -->
   
@@ -118,9 +73,6 @@
   <dirname property="module.roulette.basedir" file="${ant.file}"/>
   
   
-  <property name="module.jdk.home.roulette" value="${jdk.home.1.5}"/>
-  <property name="module.jdk.bin.roulette" value="${jdk.bin.1.5}"/>
-  <property name="module.jdk.classpath.roulette" value="jdk.classpath.1.5"/>
   
   <property name="compiler.args.roulette" value="${compiler.args}"/>
   
@@ -131,16 +83,13 @@
     <!-- Paths to be included in compilation bootclasspath -->
   </path>
   
-  <path id="roulette.module.production.classpath">
-    <path refid="${module.jdk.classpath.roulette}"/>
-  </path>
+  <path id="roulette.module.production.classpath"/>
   
   <path id="roulette.runtime.production.module.classpath">
     <pathelement location="${roulette.output.dir}"/>
   </path>
   
   <path id="roulette.module.classpath">
-    <path refid="${module.jdk.classpath.roulette}"/>
     <pathelement location="${roulette.output.dir}"/>
   </path>
   
@@ -169,7 +118,7 @@
   
   <target name="compile.module.roulette.production" description="Compile module Roulette; production classes">
     <mkdir dir="${roulette.output.dir}"/>
-    <javac destdir="${roulette.output.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}" memorymaximumsize="${compiler.max.memory}" fork="true" executable="${module.jdk.bin.roulette}/javac">
+    <javac destdir="${roulette.output.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}" memorymaximumsize="${compiler.max.memory}" fork="true">
       <compilerarg line="${compiler.args.roulette}"/>
       <bootclasspath refid="roulette.module.bootclasspath"/>
       <classpath refid="roulette.module.production.classpath"/>
