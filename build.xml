@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="roulette" default="all">
+  
+  
+  <property file="build.properties"/>
+  <!-- Uncomment the following property if no tests compilation is needed -->
+  <!-- 
+  <property name="skip.tests" value="true"/>
+   -->
+  
+  <!-- Compiler options -->
+  
+  <property name="compiler.debug" value="on"/>
+  <property name="compiler.generate.no.warnings" value="off"/>
+  <property name="compiler.args" value=""/>
+  <property name="compiler.max.memory" value="128m"/>
+  <patternset id="ignored.files">
+    <exclude name="**/CVS/**"/>
+    <exclude name="**/SCCS/**"/>
+    <exclude name="**/RCS/**"/>
+    <exclude name="**/.DS_Store/**"/>
+    <exclude name="**/.svn/**"/>
+    <exclude name="**/.pyc/**"/>
+    <exclude name="**/.pyo/**"/>
+    <exclude name="**/*.pyc/**"/>
+    <exclude name="**/*.pyo/**"/>
+    <exclude name="**/.git/**"/>
+    <exclude name="**/*.hprof/**"/>
+    <exclude name="**/_svn/**"/>
+    <exclude name="**/vssver.scc/**"/>
+    <exclude name="**/vssver2.scc/**"/>
+    <exclude name="**/.hg/**"/>
+    <exclude name="**/*.lib/**"/>
+    <exclude name="**/*~/**"/>
+    <exclude name="**/__pycache__/**"/>
+    <exclude name="**/.bundle/**"/>
+    <exclude name="**/*.rbc/**"/>
+  </patternset>
+  <patternset id="library.patterns">
+    <include name="*.war"/>
+    <include name="*.ear"/>
+    <include name="*.apk"/>
+    <include name="*.zip"/>
+    <include name="*.swc"/>
+    <include name="*.ane"/>
+    <include name="*.egg"/>
+    <include name="*.jar"/>
+  </patternset>
+  <patternset id="compiler.resources">
+    <include name="**/?*.properties"/>
+    <include name="**/?*.xml"/>
+    <include name="**/?*.gif"/>
+    <include name="**/?*.png"/>
+    <include name="**/?*.jpeg"/>
+    <include name="**/?*.jpg"/>
+    <include name="**/?*.html"/>
+    <include name="**/?*.dtd"/>
+    <include name="**/?*.tld"/>
+    <include name="**/?*.ftl"/>
+  </patternset>
+  
+  <!-- JDK definitions -->
+  
+  <property name="jdk.bin.1.5" value="${jdk.home.1.5}/bin"/>
+  <path id="jdk.classpath.1.5">
+    <fileset dir="${jdk.home.1.5}">
+      <include name="../../../../../Frameworks/JavaVM.framework/Versions/1.5/Home/lib/deploy.jar"/>
+      <include name="../../../../../Frameworks/JavaVM.framework/Versions/1.5/Home/lib/dt.jar"/>
+      <include name="../../../../../Frameworks/JavaVM.framework/Versions/1.5/Home/lib/javaws.jar"/>
+      <include name="../../../../../Frameworks/JavaVM.framework/Versions/1.5/Home/lib/jce.jar"/>
+      <include name="../../../../../Frameworks/JavaVM.framework/Versions/1.5/Home/lib/jconsole.jar"/>
+      <include name="../../../../../Frameworks/JavaVM.framework/Versions/1.5/Home/lib/management-agent.jar"/>
+      <include name="../../../../../Frameworks/JavaVM.framework/Versions/1.5/Home/lib/plugin.jar"/>
+      <include name="../../../../../Frameworks/JavaVM.framework/Versions/1.5/Home/lib/sa-jdi.jar"/>
+      <include name="../../../../../Frameworks/JavaVM.framework/Versions/1.5/Home/../Classes/charsets.jar"/>
+      <include name="../../../../../Frameworks/JavaVM.framework/Versions/1.5/Home/../Classes/classes.jar"/>
+      <include name="../../../../../Frameworks/JavaVM.framework/Versions/1.5/Home/../Classes/jsse.jar"/>
+      <include name="../../../../../Frameworks/JavaVM.framework/Versions/1.5/Home/../Classes/ui.jar"/>
+      <include name="../../../../../Frameworks/JavaVM.framework/Versions/1.5/Home/lib/ext/apple_provider.jar"/>
+      <include name="../../../../../Frameworks/JavaVM.framework/Versions/1.5/Home/lib/ext/dnsns.jar"/>
+      <include name="../../../../../Frameworks/JavaVM.framework/Versions/1.5/Home/lib/ext/localedata.jar"/>
+      <include name="../../../../../Frameworks/JavaVM.framework/Versions/1.5/Home/lib/ext/sunjce_provider.jar"/>
+      <include name="../../../../../Frameworks/JavaVM.framework/Versions/1.5/Home/lib/ext/sunpkcs11.jar"/>
+      <include name="../../../../../Frameworks/JavaVM.framework/Versions/1.5/Home/../Classes/jconsole.jar"/>
+      <include name="../../../../../Frameworks/JavaVM.framework/Versions/1.5.0/Home/lib/deploy.jar"/>
+      <include name="../../../../../Frameworks/JavaVM.framework/Versions/1.5.0/Classes/dt.jar"/>
+      <include name="../../../../../Frameworks/JavaVM.framework/Versions/1.5.0/Classes/jce.jar"/>
+      <include name="../../../../../Frameworks/JavaVM.framework/Versions/1.5.0/Home/lib/plugin.jar"/>
+      <include name="../../../../../Frameworks/JavaVM.framework/Versions/1.5.0/Home/lib/sa-jdi.jar"/>
+      <include name="../../../../../Frameworks/JavaVM.framework/Versions/1.5.0/Classes/charsets.jar"/>
+      <include name="../../../../../Frameworks/JavaVM.framework/Versions/1.5.0/Classes/classes.jar"/>
+      <include name="../../../../../Frameworks/JavaVM.framework/Versions/1.5.0/Classes/jconsole.jar"/>
+      <include name="../../../../../Frameworks/JavaVM.framework/Versions/1.5.0/Classes/jsse.jar"/>
+      <include name="../../../../../Frameworks/JavaVM.framework/Versions/1.5.0/Classes/ui.jar"/>
+      <include name="../../../../../Frameworks/JavaVM.framework/Versions/1.5.0/Home/lib/ext/apple_provider.jar"/>
+      <include name="../../../../../Frameworks/JavaVM.framework/Versions/1.5.0/Home/lib/ext/dnsns.jar"/>
+      <include name="../../../../../Frameworks/JavaVM.framework/Versions/1.5.0/Home/lib/ext/localedata.jar"/>
+      <include name="../../../../../Frameworks/JavaVM.framework/Versions/1.5.0/Home/lib/ext/sunjce_provider.jar"/>
+      <include name="../../../../../Frameworks/JavaVM.framework/Versions/1.5.0/Home/lib/ext/sunpkcs11.jar"/>
+    </fileset>
+  </path>
+  
+  <property name="project.jdk.home" value="${jdk.home.1.5}"/>
+  <property name="project.jdk.bin" value="${jdk.bin.1.5}"/>
+  <property name="project.jdk.classpath" value="jdk.classpath.1.5"/>
+  
+  
+  <!-- Global Libraries -->
+  
+  
+  <!-- Application Server Libraries -->
+  
+  <!-- Modules -->
+  
+  
+  <!-- Module Roulette -->
+  
+  <dirname property="module.roulette.basedir" file="${ant.file}"/>
+  
+  
+  <property name="module.jdk.home.roulette" value="${jdk.home.1.5}"/>
+  <property name="module.jdk.bin.roulette" value="${jdk.bin.1.5}"/>
+  <property name="module.jdk.classpath.roulette" value="jdk.classpath.1.5"/>
+  
+  <property name="compiler.args.roulette" value="${compiler.args}"/>
+  
+  <property name="roulette.output.dir" value="${module.roulette.basedir}/out/production/Roulette"/>
+  <property name="roulette.testoutput.dir" value="${module.roulette.basedir}/out/test/Roulette"/>
+  
+  <path id="roulette.module.bootclasspath">
+    <!-- Paths to be included in compilation bootclasspath -->
+  </path>
+  
+  <path id="roulette.module.production.classpath">
+    <path refid="${module.jdk.classpath.roulette}"/>
+  </path>
+  
+  <path id="roulette.runtime.production.module.classpath">
+    <pathelement location="${roulette.output.dir}"/>
+  </path>
+  
+  <path id="roulette.module.classpath">
+    <path refid="${module.jdk.classpath.roulette}"/>
+    <pathelement location="${roulette.output.dir}"/>
+  </path>
+  
+  <path id="roulette.runtime.module.classpath">
+    <pathelement location="${roulette.testoutput.dir}"/>
+    <pathelement location="${roulette.output.dir}"/>
+  </path>
+  
+  
+  <patternset id="excluded.from.module.roulette">
+    <patternset refid="ignored.files"/>
+  </patternset>
+  
+  <patternset id="excluded.from.compilation.roulette">
+    <patternset refid="excluded.from.module.roulette"/>
+  </patternset>
+  
+  <path id="roulette.module.sourcepath">
+    <dirset dir="${module.roulette.basedir}">
+      <include name="src"/>
+    </dirset>
+  </path>
+  
+  
+  <target name="compile.module.roulette" depends="compile.module.roulette.production,compile.module.roulette.tests" description="Compile module Roulette"/>
+  
+  <target name="compile.module.roulette.production" description="Compile module Roulette; production classes">
+    <mkdir dir="${roulette.output.dir}"/>
+    <javac destdir="${roulette.output.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}" memorymaximumsize="${compiler.max.memory}" fork="true" executable="${module.jdk.bin.roulette}/javac">
+      <compilerarg line="${compiler.args.roulette}"/>
+      <bootclasspath refid="roulette.module.bootclasspath"/>
+      <classpath refid="roulette.module.production.classpath"/>
+      <src refid="roulette.module.sourcepath"/>
+      <patternset refid="excluded.from.compilation.roulette"/>
+    </javac>
+    
+    <copy todir="${roulette.output.dir}">
+      <fileset dir="${module.roulette.basedir}/src">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+    </copy>
+  </target>
+  
+  <target name="compile.module.roulette.tests" depends="compile.module.roulette.production" description="compile module Roulette; test classes" unless="skip.tests"/>
+  
+  <target name="clean.module.roulette" description="cleanup module">
+    <delete dir="${roulette.output.dir}"/>
+    <delete dir="${roulette.testoutput.dir}"/>
+  </target>
+  
+  <target name="init" description="Build initialization">
+    <!-- Perform any build initialization in this target -->
+  </target>
+  
+  <target name="clean" depends="clean.module.roulette" description="cleanup all"/>
+  
+  <target name="build.modules" depends="init, clean, compile.module.roulette" description="build all modules"/>
+  
+  <target name="init.artifacts">
+    <property name="artifacts.temp.dir" value="${basedir}/__artifacts_temp"/>
+    <property name="artifact.output.roulette:jar" value="${basedir}/out/artifacts/Roulette_jar"/>
+    <mkdir dir="${artifacts.temp.dir}"/>
+    <property name="temp.jar.path.Roulette.jar" value="${artifacts.temp.dir}/Roulette.jar"/>
+  </target>
+  
+  <target name="artifact.roulette:jar" depends="init.artifacts, compile.module.roulette" description="Build &#39;Roulette:jar&#39; artifact">
+    <property name="artifact.temp.output.roulette:jar" value="${artifacts.temp.dir}/Roulette_jar"/>
+    <mkdir dir="${artifact.temp.output.roulette:jar}"/>
+    <jar destfile="${temp.jar.path.Roulette.jar}" duplicate="preserve" filesetmanifest="mergewithoutmain">
+      <zipfileset file="${basedir}/src/META-INF/MANIFEST.MF" prefix="META-INF"/>
+      <zipfileset dir="${roulette.output.dir}"/>
+    </jar>
+    <copy file="${temp.jar.path.Roulette.jar}" tofile="${artifact.temp.output.roulette:jar}/Roulette.jar"/>
+  </target>
+  
+  <target name="build.all.artifacts" depends="artifact.roulette:jar" description="Build all artifacts">
+    <mkdir dir="${artifact.output.roulette:jar}"/>
+    <copy todir="${artifact.output.roulette:jar}">
+      <fileset dir="${artifact.temp.output.roulette:jar}"/>
+    </copy>
+    
+    <!-- Delete temporary files -->
+    <delete dir="${artifacts.temp.dir}"/>
+  </target>
+  
+  <target name="all" depends="build.modules, build.all.artifacts" description="build all"/>
+</project>
