@@ -75,6 +75,7 @@ public class Roulette {
         for (JLabel jabel : new JLabel[]{spinsLabel, betLabel, winlossLabel, spins, bet, winloss}) {
             jabel.setFont(jabel.getFont().deriveFont(25.0f));
         }
+
         status.add(spinsLabel);
         status.add(betLabel);
         status.add(winlossLabel);
@@ -82,12 +83,13 @@ public class Roulette {
         status.add(bet);
         status.add(winloss);
 
-
         for (NumberGroup group : NumberGroup.values()) {
             JRadioButton button = new JRadioButton(group.name());
             betPanel.add(button);
             bg.add(button);
         }
+
+        bg.getElements().nextElement().setSelected(true);
 
         initialBet.setToolTipText("Starting bet during each game");
         initialBet.setColumns(4);
@@ -126,6 +128,8 @@ public class Roulette {
         for (WheelType type : EnumSet.allOf(WheelType.class)) {
             model.addElement(type.getDescription());
         }
+        board.setSelectedItem(WheelType.TwoZeros.getDescription());
+
         board.setToolTipText("How many Greens (zeros) does the wheel/board have?");
         JButton play = new JButton("Play");
         gamePanel.add(new JLabel("Wheel:"));
