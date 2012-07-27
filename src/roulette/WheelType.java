@@ -7,13 +7,13 @@ import java.util.EnumSet;
  * User: sone
  * Date: 7/7/12
  * Time: 3:29 PM
- * To change this template use File | Settings | File Templates.
+ * Defines the type of roulette wheel.  One or two zeros (green)
  */
-public enum BoardType {
+public enum WheelType {
     OneZero("One Zero"), TwoZeros("Two Zeros"),;
     private String description;
 
-    BoardType(String description) {
+    WheelType(String description) {
         this.description = description;
     }
 
@@ -21,10 +21,10 @@ public enum BoardType {
         return description;
     }
 
-    public static BoardType fromDescription(String description) {
-        for (BoardType boardType : EnumSet.allOf(BoardType.class)) {
-            if (boardType.getDescription().equals(description)) {
-                return boardType;
+    public static WheelType fromDescription(String description) {
+        for (WheelType wheelType : EnumSet.allOf(WheelType.class)) {
+            if (wheelType.getDescription().equals(description)) {
+                return wheelType;
             }
         }
         return null;

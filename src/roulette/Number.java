@@ -4,11 +4,11 @@ package roulette; /**
  * User: sone
  * Date: 7/6/12
  * Time: 12:16 PM
- * To change this template use File | Settings | File Templates.
+ * Enumerates all the numbers on the roulette wheel, and precalculates which bets (NumberGroup(s)) that they are a winner for.
  */
 import java.util.*;
 
-import static roulette.NumberGroups.*;
+import static roulette.NumberGroup.*;
 
 public enum Number {
         One(1, Red),
@@ -56,7 +56,7 @@ public enum Number {
     ;
 
     private int number;
-    private EnumSet<NumberGroups> groups;
+    private EnumSet<NumberGroup> groups;
     private static Map<Integer, Number> map = new HashMap<Integer, Number>();
 
     static {
@@ -65,10 +65,11 @@ public enum Number {
         }
     }
 
-    private Number(int number, NumberGroups ... groups) {
+    private Number(int number, NumberGroup... groups) {
         this.number = number;
-        this.groups = EnumSet.noneOf(NumberGroups.class);
+        this.groups = EnumSet.noneOf(NumberGroup.class);
         if (number < 37) {
+            // Calculate which NumberGroup(s) this number wins for, and add to the enumset "groups"
             this.groups.add(number % 2 == 0 ? Even : Odd);
             this.groups.add(number % 3 == 0 ? ThirdV12 :
                     number % 3 == 1 ? FirstV12 : SecondV12);
@@ -85,11 +86,22 @@ public enum Number {
         return number;
     }
 
-    public EnumSet<NumberGroups> getGroups() {
+    /** @return the EnumSet of NumberGroup(s) that this number is a winner for. */
+    public EnumSet<NumberGroup> getWinningGroups() {
         return groups;
     }
 
+    /** Returns the correct enum value based on the "number" parameter */
     public static Number get(int number) {
         return map.get(number);
     }
+
+    public String getShortString() {
+        if (this == ZERO)
+            return "0";
+        if (this == ZEROZERO)
+            return "00";
+        return String.valueOf(this.getNumber());
+    }
+
 }
