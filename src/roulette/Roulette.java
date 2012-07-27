@@ -4,6 +4,7 @@ import javax.swing.*;
 import javax.swing.border.TitledBorder;
 import javax.swing.table.*;
 import java.awt.*;
+import java.awt.event.*;
 import java.text.DecimalFormat;
 import java.util.*;
 
@@ -52,7 +53,7 @@ public class Roulette {
 
         JPanel panel1 = new JPanel(new BorderLayout(5, 5));
         JPanel panel2 = new JPanel(new BorderLayout());
-        JPanel betPanel = new JPanel(new GridLayout(3, 6) );
+        JPanel betPanel = new JPanel(new GridLayout(3, 6));
         betPanel.setBorder(new TitledBorder("Bet On"));
         JPanel strategyPanel = new JPanel(new GridLayout(0, 6));
         strategyPanel.setBorder(new TitledBorder("Strategy"));
@@ -158,7 +159,40 @@ public class Roulette {
             }
         });
 
-        play.addActionListener(new GameSessionRunner(this));
+        play.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Double startingBetL = Double.valueOf(initialBet.getText());
+                Double maxBetL = Double.valueOf(maxBet.getText());
+                Double multL = Double.valueOf(multipler.getText());
+                Long delayL = Long.valueOf(delay.getText());
+                Double denominationL = Double.valueOf(denomination.getText());
+                Boolean dontGiveUp = neverGiveUp.getModel().isSelected();
+
+                MartingaleStrategy strategy = new MartingaleStrategy(startingBetL, maxBetL, multL, delayL, denominationL, dontGiveUp);
+                Roulette.this.bettingStrategy = strategy;
+
+                WheelType wheelType = WheelType.fromDescription((String) board.getSelectedItem());
+
+                final Long iterations = Long.valueOf(games.getText());
+
+                while (tableModel.getRowCount() > 0) {
+                    tableModel.removeRow(tableModel.getRowCount() - 1);
+                }
+
+                NumberGroup group = null;
+                Enumeration<AbstractButton> elements = bg.getElements();
+                while (elements.hasMoreElements()) {
+                    AbstractButton button = elements.nextElement();
+                    if (button.isSelected()) {
+                        String text = button.getText();
+                        group = NumberGroup.valueOf(text);
+                    }
+                }
+
+                new Thread(new GameSessionRunner(Roulette.this, strategy, iterations, wheelType, group)).start();
+            }
+        });
 
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         frame.pack();
@@ -169,26 +203,31 @@ public class Roulette {
         this.bettingStrategy = bettingStrategy;
     }
 
-    public void recordResult(long spinsL, double betD, double winlossD, double runningWinLossD, GameResult gameResult) {
-        java.util.List<String> spinList = new ArrayList<String>();
-        for (Number number : gameResult.getSpins()) {
-            spinList.add(number.getShortString());
-        }
-        DecimalFormat fmt = new DecimalFormat("0.00");
+    public void recordResult(final long spinsL, final double betD, final double winlossD, final double runningWinLossD, final GameResult gameResult) {
+        Runnable runnable = new Runnable() {
+            public void run() {
+                java.util.List<String> spinList = new ArrayList<String>();
+                for (Number number : gameResult.getSpins()) {
+                    spinList.add(number.getShortString());
+                }
+                DecimalFormat fmt = new DecimalFormat("0.00");
 
-        Vector<String> v = new Vector<String>(5);
-        v.add((gameResult.win ? "WIN" : "LOSE"));
-        v.add(String.valueOf(gameResult.iterations) + ": " + spinList);
-        v.add(fmt.format(gameResult.lastBet));
-        v.add(fmt.format(gameResult.totalBet));
-        v.add(fmt.format(gameResult.totalWinnings));
-        v.add(fmt.format(runningWinLossD));
-        tableModel.addRow(v);
+                Vector<String> v = new Vector<String>(5);
+                v.add((gameResult.win ? "WIN" : "LOSE"));
+                v.add(String.valueOf(gameResult.iterations) + ": " + spinList);
+                v.add(fmt.format(gameResult.lastBet));
+                v.add(fmt.format(gameResult.totalBet));
+                v.add(fmt.format(gameResult.totalWinnings));
+                v.add(fmt.format(runningWinLossD));
+                tableModel.addRow(v);
 
-        spins.setText(String.valueOf(spinsL));
-        bet.setText(String.valueOf(betD));
-        winloss.setText(String.valueOf(winlossD));
-        winloss.setForeground(winlossD > 0 ? Color.green : Color.red);
+                spins.setText(String.valueOf(spinsL));
+                bet.setText(String.valueOf(betD));
+                winloss.setText(String.valueOf(winlossD));
+                winloss.setForeground(winlossD > 0 ? Color.green : Color.red);
+            }
+        };
+        SwingUtilities.invokeLater(runnable);
     }
 
 }

@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7fa9ecf3-f3ee-4450-8141-8d9bf51da9d8" name="Default" comment="">
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/roulette/Results.java" afterPath="$PROJECT_DIR$/src/roulette/GameResult.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Roulette.iws" afterPath="$PROJECT_DIR$/Roulette.iws" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/roulette/GameSessionRunner.java" afterPath="$PROJECT_DIR$/src/roulette/GameSessionRunner.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/roulette/Roulette.java" afterPath="$PROJECT_DIR$/src/roulette/Roulette.java" />
@@ -63,28 +62,32 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="Roulette.java" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="Roulette.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/roulette/Roulette.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="171" column="70" selection-start="6983" selection-end="6991" vertical-scroll-proportion="-8.615385">
+            <state line="194" column="9" selection-start="8273" selection-end="8273" vertical-scroll-proportion="0.69343066">
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="docComment;class#Roulette#0" expanded="true" />
+                <element signature="e#6657#8273#0" expanded="true" />
+                <element signature="e#8262#8263#0" expanded="true" />
                 <element signature="method#setBettingStrategy#0;class#Roulette#0" expanded="true" />
-                <element signature="e#7097#7105#0" expanded="true" />
-                <element signature="e#7317#7325#0" expanded="true" />
+                <element signature="e#8713#9766#0" expanded="true" />
+                <element signature="e#8825#8833#0" expanded="true" />
+                <element signature="e#9085#9093#0" expanded="true" />
+                <element signature="e#9755#9756#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="GameSessionRunner.java" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="GameSessionRunner.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/roulette/GameSessionRunner.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="53" column="0" selection-start="2195" selection-end="2195" vertical-scroll-proportion="0.39583334">
+            <state line="37" column="24" selection-start="1076" selection-end="1076" vertical-scroll-proportion="0.0">
               <folding>
                 <element signature="docComment;class#GameSessionRunner#0" expanded="true" />
-                <element signature="e#3703#3711#0" expanded="true" />
+                <element signature="e#2154#2162#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -93,10 +96,11 @@
       <file leaf-file-name="BettingStrategy.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/roulette/BettingStrategy.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="17" column="34" selection-start="469" selection-end="469" vertical-scroll-proportion="0.0">
+            <state line="10" column="17" selection-start="157" selection-end="157" vertical-scroll-proportion="0.0">
               <folding>
                 <element signature="docComment;class#BettingStrategy#0" expanded="true" />
                 <element signature="docComment;method#getStartingBet#0;class#BettingStrategy#0" expanded="true" />
+                <element signature="docComment;method#getBetAmount#0;class#BettingStrategy#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -202,8 +206,8 @@
         <option value="$PROJECT_DIR$/src/roulette/GamingSession.java" />
         <option value="$PROJECT_DIR$/src/roulette/Results.java" />
         <option value="$PROJECT_DIR$/src/roulette/Number.java" />
-        <option value="$PROJECT_DIR$/src/roulette/Roulette.java" />
         <option value="$PROJECT_DIR$/src/roulette/GameSessionRunner.java" />
+        <option value="$PROJECT_DIR$/src/roulette/Roulette.java" />
       </list>
     </option>
   </component>
@@ -500,7 +504,11 @@
       <created>1343417113218</created>
       <updated>1343417113218</updated>
     </task>
-    <option name="localTasksCounter" value="$1$" />
+    <task id="LOCAL-00002" summary="Moved gui update code back to Roulette.java from GameSessionRunner.java">
+      <created>1343417561110</created>
+      <updated>1343417561110</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -511,6 +519,7 @@
       <window_info id="Changes" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.17275748" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="JetGradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32890365" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33554816" sideWeight="0.99861306" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="IDEtalk Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -526,7 +535,6 @@
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32890365" sideWeight="0.5" order="$1$" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32890365" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.23786408" sideWeight="0.66445184" order="$1$" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -570,7 +578,7 @@
     <option name="SHOW_VCS_ERROR_NOTIFICATIONS" value="true" />
     <option name="FORCE_NON_EMPTY_COMMENT" value="false" />
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="false" />
-    <option name="LAST_COMMIT_MESSAGE" value="Commented some classes. Moved some stuff around." />
+    <option name="LAST_COMMIT_MESSAGE" value="Moved gui update code back to Roulette.java from GameSessionRunner.java" />
     <option name="MAKE_NEW_CHANGELIST_ACTIVE" value="true" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_FILES_UP_TO_DATE_BEFORE_COMMIT" value="false" />
@@ -584,6 +592,7 @@
     <option name="SHOW_FILE_HISTORY_AS_TREE" value="false" />
     <option name="FILE_HISTORY_SPLITTER_PROPORTION" value="0.6" />
     <MESSAGE value="Commented some classes. Moved some stuff around." />
+    <MESSAGE value="Moved gui update code back to Roulette.java from GameSessionRunner.java" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -621,16 +630,6 @@
     <entry file="jar:///Library/Java/JavaVirtualMachines/JDK 1.7.0 Developer Preview.jdk/Contents/Home/src.zip!/java/lang/NumberFormatException.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="64" column="0" selection-start="2280" selection-end="2280" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/roulette/BettingStrategy.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="17" column="34" selection-start="469" selection-end="469" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="docComment;class#BettingStrategy#0" expanded="true" />
-            <element signature="docComment;method#getStartingBet#0;class#BettingStrategy#0" expanded="true" />
-          </folding>
-        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/roulette/NumberGroup.java">
@@ -693,25 +692,40 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/roulette/Roulette.java">
+    <entry file="file://$PROJECT_DIR$/src/roulette/BettingStrategy.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="171" column="70" selection-start="6983" selection-end="6991" vertical-scroll-proportion="-8.615385">
+        <state line="10" column="17" selection-start="157" selection-end="157" vertical-scroll-proportion="0.0">
           <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="docComment;class#Roulette#0" expanded="true" />
-            <element signature="method#setBettingStrategy#0;class#Roulette#0" expanded="true" />
-            <element signature="e#7097#7105#0" expanded="true" />
-            <element signature="e#7317#7325#0" expanded="true" />
+            <element signature="docComment;class#BettingStrategy#0" expanded="true" />
+            <element signature="docComment;method#getStartingBet#0;class#BettingStrategy#0" expanded="true" />
+            <element signature="docComment;method#getBetAmount#0;class#BettingStrategy#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/roulette/GameSessionRunner.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="53" column="0" selection-start="2195" selection-end="2195" vertical-scroll-proportion="0.39583334">
+        <state line="37" column="24" selection-start="1076" selection-end="1076" vertical-scroll-proportion="0.0">
           <folding>
             <element signature="docComment;class#GameSessionRunner#0" expanded="true" />
-            <element signature="e#3703#3711#0" expanded="true" />
+            <element signature="e#2154#2162#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/roulette/Roulette.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="194" column="9" selection-start="8273" selection-end="8273" vertical-scroll-proportion="0.69343066">
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="docComment;class#Roulette#0" expanded="true" />
+            <element signature="e#6657#8273#0" expanded="true" />
+            <element signature="e#8262#8263#0" expanded="true" />
+            <element signature="method#setBettingStrategy#0;class#Roulette#0" expanded="true" />
+            <element signature="e#8713#9766#0" expanded="true" />
+            <element signature="e#8825#8833#0" expanded="true" />
+            <element signature="e#9085#9093#0" expanded="true" />
+            <element signature="e#9755#9756#0" expanded="true" />
           </folding>
         </state>
       </provider>

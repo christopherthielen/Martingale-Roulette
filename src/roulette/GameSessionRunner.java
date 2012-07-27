@@ -1,72 +1,51 @@
 package roulette;
 
-import javax.swing.*;
-import java.awt.event.*;
 import java.security.SecureRandom;
 import java.util.*;
 
 /**
-* Created with IntelliJ IDEA.
-* User: sone
-* Date: 7/27/12
-* Time: 1:56 PM
-* To change this template use File | Settings | File Templates.
-*/
-class GameSessionRunner implements ActionListener {
+ * Created with IntelliJ IDEA.
+ * User: sone
+ * Date: 7/27/12
+ * Time: 1:56 PM
+ * To change this template use File | Settings | File Templates.
+ */
+public class GameSessionRunner implements Runnable {
     static SecureRandom secureRandom = new SecureRandom();
-    private Roulette gui;
 
-    public GameSessionRunner(Roulette gui) {
+    private Roulette gui;
+    private BettingStrategy bettingStrategy;
+    private long iterations;
+    private WheelType wheelType;
+    private NumberGroup bet;
+
+    public GameSessionRunner(Roulette gui, BettingStrategy strategy, long iterations, WheelType wheelType, NumberGroup bet) {
+        this.wheelType = wheelType;
+        this.bet = bet;
         this.gui = gui;
+        this.bettingStrategy = strategy;
+        this.iterations = iterations;
     }
 
-    @Override
-    public void actionPerformed(ActionEvent e) {
-        while (gui.tableModel.getRowCount() > 0) {
-            gui.tableModel.removeRow(gui.tableModel.getRowCount() - 1);
-        }
+    public void run() {
+        long sessionSpins = 0;
+        double sessionBets = 0;
+        double sessionWinLoss = 0;
+        double runningWinLossD = 0;
+        for (int i = 0; i < iterations; i++) {
+            GameResult gameResult = runGame();
 
-        Double startingBetL = Double.valueOf(gui.initialBet.getText());
-        Double maxBetL = Double.valueOf(gui.maxBet.getText());
-        Double multL = Double.valueOf(gui.multipler.getText());
-        Long delayL = Long.valueOf(gui.delay.getText());
-        Double denominationL = Double.valueOf(gui.denomination.getText());
-        Boolean dontGiveUp = gui.neverGiveUp.getModel().isSelected();
-        gui.setBettingStrategy(new MartingaleStrategy(startingBetL, maxBetL, multL, delayL, denominationL, dontGiveUp));
+            gui.recordResult(sessionSpins, sessionBets, sessionWinLoss, runningWinLossD, gameResult);
 
-        final Long iterations = Long.valueOf(gui.games.getText());
-        Enumeration<AbstractButton> elements = gui.bg.getElements();
-        while (elements.hasMoreElements()) {
-            AbstractButton button = elements.nextElement();
-            if (button.isSelected()) {
-                String text = button.getText();
-                final NumberGroup group = NumberGroup.valueOf(text);
-                    new Thread() {
-                        @Override
-                        public void run() {
-                            long sessionSpins = 0;
-                            double sessionBets = 0;
-                            double sessionWinLoss = 0;
-                            double runningWinLossD = 0;
-                            for (int i = 0; i < iterations; i++) {
-                                WheelType wheelType = WheelType.fromDescription((String) gui.board.getSelectedItem());
-                                GameResult gameResult = runGame(group, wheelType);
-                                gui.recordResult(sessionSpins, sessionBets, sessionWinLoss, runningWinLossD, gameResult);
+            runningWinLossD += gameResult.totalWinnings;
+            sessionSpins += gameResult.iterations;
+            sessionBets += gameResult.totalBet;
+            sessionWinLoss += gameResult.totalWinnings;
 
-                                runningWinLossD += gameResult.totalWinnings;
-                                sessionSpins += gameResult.iterations;
-                                sessionBets += gameResult.totalBet;
-                                sessionWinLoss += gameResult.totalWinnings;
-
-                                try {
-                                    Thread.sleep(Math.min(100, 4000 / iterations));
-                                } catch (InterruptedException e1) {
-                                    e1.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
-                                }
-                            }
-                        }
-
-                    }.start();
+            try {
+                Thread.sleep(Math.min(100, 4000 / iterations));
+            } catch (InterruptedException ignored) {
+                ignored.printStackTrace();
             }
         }
     }
@@ -86,9 +65,9 @@ class GameSessionRunner implements ActionListener {
     }
 
 
-    public GameResult runGame(NumberGroup bet, WheelType wheelType) {
+    private GameResult runGame() {
         double totalBet = 0.0;
-        double betAmount = gui.bettingStrategy.getStartingBet();
+        double betAmount = bettingStrategy.getStartingBet();
         double lastbet = 0;
 
         int i = 0;
@@ -108,7 +87,7 @@ class GameSessionRunner implements ActionListener {
                 return new GameResult(true, bet, odds, i, betAmount, totalBet, spins);
             }
 
-            betAmount = gui.bettingStrategy.getBetAmount(i, betAmount, spin);
+            betAmount = bettingStrategy.getBetAmount(i, betAmount, spin);
             if (betAmount <= 0) {
                 return new GameResult(false, bet, odds, i, lastbet, totalBet, spins);
             }
