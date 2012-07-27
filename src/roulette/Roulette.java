@@ -4,7 +4,8 @@ import javax.swing.*;
 import javax.swing.border.TitledBorder;
 import javax.swing.table.*;
 import java.awt.*;
-import java.util.EnumSet;
+import java.text.DecimalFormat;
+import java.util.*;
 
 /**
  * GUI and main entry point
@@ -167,4 +168,27 @@ public class Roulette {
     public void setBettingStrategy(BettingStrategy bettingStrategy) {
         this.bettingStrategy = bettingStrategy;
     }
+
+    public void recordResult(long spinsL, double betD, double winlossD, double runningWinLossD, GameResult gameResult) {
+        java.util.List<String> spinList = new ArrayList<String>();
+        for (Number number : gameResult.getSpins()) {
+            spinList.add(number.getShortString());
+        }
+        DecimalFormat fmt = new DecimalFormat("0.00");
+
+        Vector<String> v = new Vector<String>(5);
+        v.add((gameResult.win ? "WIN" : "LOSE"));
+        v.add(String.valueOf(gameResult.iterations) + ": " + spinList);
+        v.add(fmt.format(gameResult.lastBet));
+        v.add(fmt.format(gameResult.totalBet));
+        v.add(fmt.format(gameResult.totalWinnings));
+        v.add(fmt.format(runningWinLossD));
+        tableModel.addRow(v);
+
+        spins.setText(String.valueOf(spinsL));
+        bet.setText(String.valueOf(betD));
+        winloss.setText(String.valueOf(winlossD));
+        winloss.setForeground(winlossD > 0 ? Color.green : Color.red);
+    }
+
 }

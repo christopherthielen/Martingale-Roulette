@@ -10,7 +10,7 @@ import java.util.List;
 *
 * Data structure capturing the results of a "Game"
 */
-public class Results {
+public class GameResult {
     boolean win;
     /** Which NumberGroup the player was betting on */
     private final NumberGroup bet;
@@ -27,7 +27,7 @@ public class Results {
     /** An ordered list of the spins that occurred during this "game" */
     private List<Number> spins;
 
-    Results(boolean win, NumberGroup bet, double odds, int iterations, double lastBet, double totalBet, List<Number> spins) {
+    GameResult(boolean win, NumberGroup bet, double odds, int iterations, double lastBet, double totalBet, List<Number> spins) {
         this.win = win;
         this.bet = bet;
         this.odds = odds;

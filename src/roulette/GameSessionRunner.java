@@ -1,12 +1,9 @@
 package roulette;
 
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.*;
 import java.security.SecureRandom;
-import java.text.DecimalFormat;
 import java.util.*;
-import java.util.List;
 
 /**
 * Created with IntelliJ IDEA.
@@ -47,37 +44,19 @@ class GameSessionRunner implements ActionListener {
                     new Thread() {
                         @Override
                         public void run() {
-                            long spinsL = 0;
-                            double betD = 0;
-                            double winlossD = 0;
+                            long sessionSpins = 0;
+                            double sessionBets = 0;
+                            double sessionWinLoss = 0;
                             double runningWinLossD = 0;
                             for (int i = 0; i < iterations; i++) {
                                 WheelType wheelType = WheelType.fromDescription((String) gui.board.getSelectedItem());
-                                Results results = runGame(group, wheelType);
-                                runningWinLossD += results.totalWinnings;
+                                GameResult gameResult = runGame(group, wheelType);
+                                gui.recordResult(sessionSpins, sessionBets, sessionWinLoss, runningWinLossD, gameResult);
 
-                                List<String> spins = new ArrayList<String>();
-                                for (Number number : results.getSpins()) {
-                                    spins.add(number.getShortString());
-                                }
-                                        DecimalFormat fmt = new DecimalFormat("0.00");
-
-                                Vector<String> v = new Vector<String>(5);
-                                v.add((results.win ? "WIN" : "LOSE"));
-                                v.add(String.valueOf(results.iterations) + ": " + spins);
-                                v.add(fmt.format(results.lastBet));
-                                v.add(fmt.format(results.totalBet));
-                                v.add(fmt.format(results.totalWinnings));
-                                v.add(fmt.format(runningWinLossD));
-                                gui.tableModel.addRow(v);
-
-                                spinsL += results.iterations;
-                                betD += results.totalBet;
-                                winlossD += results.totalWinnings;
-                                gui.spins.setText(String.valueOf(spinsL));
-                                gui.bet.setText(String.valueOf(betD));
-                                gui.winloss.setText(String.valueOf(winlossD));
-                                gui.winloss.setForeground(winlossD > 0 ? Color.green : Color.red);
+                                runningWinLossD += gameResult.totalWinnings;
+                                sessionSpins += gameResult.iterations;
+                                sessionBets += gameResult.totalBet;
+                                sessionWinLoss += gameResult.totalWinnings;
 
                                 try {
                                     Thread.sleep(Math.min(100, 4000 / iterations));
@@ -86,6 +65,7 @@ class GameSessionRunner implements ActionListener {
                                 }
                             }
                         }
+
                     }.start();
             }
         }
@@ -106,7 +86,7 @@ class GameSessionRunner implements ActionListener {
     }
 
 
-    public Results runGame(NumberGroup bet, WheelType wheelType) {
+    public GameResult runGame(NumberGroup bet, WheelType wheelType) {
         double totalBet = 0.0;
         double betAmount = gui.bettingStrategy.getStartingBet();
         double lastbet = 0;
@@ -125,12 +105,12 @@ class GameSessionRunner implements ActionListener {
             if (bet == NumberGroup.Green && wheelType == WheelType.OneZero)
                 odds *= 2;
             if (winner) {
-                return new Results(true, bet, odds, i, betAmount, totalBet, spins);
+                return new GameResult(true, bet, odds, i, betAmount, totalBet, spins);
             }
 
             betAmount = gui.bettingStrategy.getBetAmount(i, betAmount, spin);
             if (betAmount <= 0) {
-                return new Results(false, bet, odds, i, lastbet, totalBet, spins);
+                return new GameResult(false, bet, odds, i, lastbet, totalBet, spins);
             }
         }
     }
